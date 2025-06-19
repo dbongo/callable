@@ -12,14 +12,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Ruby ≤ 2.2 need Bundler 1.17.x
-          - ruby: "2.0.0-p648"
-            bundler: "1.17.3"
+          # Legacy but still supported (Bundler 1.17)
           - ruby: "2.1.9"
             bundler: "1.17.3"
           - ruby: "2.2.10"
             bundler: "1.17.3"
-          # Modern versions
+
+          # Regular supported versions
           - ruby: "2.3.8"
           - ruby: "2.4.10"
           - ruby: "2.5.9"
@@ -37,12 +36,15 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler: ${{ matrix.bundler || 'latest' }}
-          bundler-cache: true
+          bundler: none
 
       - name: Update RubyGems (for Ruby <= 2.2)
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
         run: gem update --system 2.7.11
+
+      - name: Install Bundler 1.17.3 (for Ruby <= 2.2)
+        if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
+        run: gem install bundler -v 1.17.3
 
       - name: Install dependencies
         run: bundle install --jobs 3 --retry 3
