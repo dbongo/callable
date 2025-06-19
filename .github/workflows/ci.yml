@@ -43,7 +43,9 @@ jobs:
 
       - name: Clear old gem cache (for Ruby <= 2.2)
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
-        run: gem sources --clear-all
+        run: |
+          gem sources --clear-all
+          rm -rf ~/.gem
 
       - name: Install Bundler 1.17.3 (for Ruby <= 2.2)
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
