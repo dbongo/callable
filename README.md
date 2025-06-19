@@ -47,8 +47,6 @@ class SendNotification
     NotificationMailer.notify(@user, @message).deliver_now
   end
 end
-
-SendNotification.call(current_user, "Hello from Callable!")
 ```
 
 Then run your class using the `.call` class method:
