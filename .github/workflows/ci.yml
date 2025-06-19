@@ -36,15 +36,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler: none
 
       - name: Update RubyGems (for Ruby <= 2.2)
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
-        run: gem update --system 2.7.11
+        run: gem update --system 2.6.14
 
       - name: Install Bundler 1.17.3 (for Ruby <= 2.2)
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
-        run: gem install bundler -v 1.17.3
+        run: gem install bundler -v 1.17.3 --force
 
       - name: Install dependencies
         run: bundle install --jobs 3 --retry 3
