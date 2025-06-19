@@ -41,6 +41,10 @@ jobs:
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
         run: gem update --system 2.6.14
 
+      - name: Clear old gem cache (for Ruby <= 2.2)
+        if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
+        run: gem sources --clear-all
+
       - name: Install Bundler 1.17.3 (for Ruby <= 2.2)
         if: matrix.ruby == '2.2.10' || matrix.ruby == '2.1.9'
         run: gem install bundler -v 1.17.3 --force
