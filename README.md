@@ -8,7 +8,7 @@ Callable is a minimal Ruby mix-in that provides your classes with a simple `.cal
 - Transparently forwards positional arguments, keyword arguments, and blocks.
 - Handles argument errors gracefully, raising clear exceptions.
 - Zero external runtime dependencies.
-- Compatible with MRI Ruby 2.0 through Ruby 3.x.
+- Compatible with MRI Ruby 2.3 through Ruby 3.x.
 
 ## Installation
 
