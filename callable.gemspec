@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
                        "simplifying instantiation and method invocation."
   spec.homepage      = "https://github.com/dbongo/callable"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 2.0.0"
+  spec.required_ruby_version = ">= 2.1.0"
 
   spec.metadata = {
     "homepage_uri"    => spec.homepage,
