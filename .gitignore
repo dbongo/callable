@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# editor
+*.swp
+.idea/
+.vscode/
+
+# ruby
+.ruby-version
+.rvmrc
+/.bundle/
+/vendor/bundle/
+/Gemfile.lock
+
+# gems and packages
+*.gem
+/pkg/
+
+# docs and coverage
+/doc/
+/rdoc/
+/_yardoc/
+/.yardoc
+/coverage/
+/spec/reports/
+
+# logs and temp
+/log/
+/tmp/
+
+# test
+.rspec_status
+
+# misc
+tags
+.loadpath
+.project

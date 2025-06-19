@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # ---- Ruby ≤ 2.2 need Bundler 1.17.x ------------------------
+          - ruby: "2.0.0-p648"
+            bundler: "1.17.3"
+          - ruby: "2.1.10"
+            bundler: "1.17.3"
+          - ruby: "2.2.10"
+            bundler: "1.17.3"
+          # ---- Normal modern combo -----------------------------------
+          - ruby: "2.3.8"
+          - ruby: "2.4.10"
+          - ruby: "2.5.9"
+          - ruby: "2.6.7"
+          - ruby: "2.7.8"
+          - ruby: "3.0.6"
+          - ruby: "3.1.4"
+          - ruby: "3.2.3"
+          - ruby: "3.3.0"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler: ${{ matrix.bundler || 'latest' }}
+          bundler-cache: true   # caches Gem/ bundler dir
+
+      # For 2.0–2.2, force-install bundler 1.17 (setup-ruby can’t)
+      - name: Install Bundler 1.x on very old Rubies
+        if: matrix.bundler
+        run: gem install bundler -v "$BUNDLER_VERSION"
+        env:
+          BUNDLER_VERSION: ${{ matrix.bundler }}
+
+      - name: Install dependencies
+        run: bundle install --jobs 3 --retry 3
+
+      - name: Run specs
+        run: bundle exec rspec
