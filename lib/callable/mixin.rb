@@ -18,12 +18,12 @@ module Callable
     # @raise  [ConstructionError] when instantiation fails
     def call(*args, **kwargs, &block)
       inst = begin
-        # avoids Ruby 2.0–2.6 quirk
-        if kwargs.empty?
-          new(*args, &block)
-        else
-          new(*args, **kwargs, &block)
-        end
+        # avoids Ruby 2.3–2.6 quirk
+        kwargs.empty? ? new(*args, &block) : new(*args, **kwargs, &block)
+      rescue ArgumentError => error
+        raise ConstructionError,
+              "Failed to construct #{name}.new with the supplied arguments: #{error.message}",
+              error.backtrace
       end
 
       if block_given? && inst.method(:call).arity.zero?
@@ -31,10 +31,6 @@ module Callable
       else
         inst.call
       end
-    rescue ArgumentError => error
-      raise ConstructionError,
-            "Failed to construct #{name}.new with the supplied arguments: #{error.message}",
-            error.backtrace
     end
   end
 end

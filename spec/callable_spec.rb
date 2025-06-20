@@ -259,4 +259,43 @@ RSpec.describe Callable do
       expect { CallError.call }.to raise_error(RuntimeError, "boom")
     end
   end
+
+  # ------------------------------------------------------------------
+  # 5. WRAP-vs-PROPAGATE MATRIX
+  # ------------------------------------------------------------------
+
+  describe "wrap vs propagate" do
+    #
+    # A. #initialize raises ArgumentError → should be **wrapped**
+    #
+    class InitArgumentError
+      include Callable
+      def initialize(*)
+        raise ArgumentError, "bad ctor"
+      end
+      def call
+        :never
+      end
+    end
+
+    it "wraps ArgumentError raised in #initialize" do
+      expect { InitArgumentError.call }
+        .to raise_error(Callable::ConstructionError, /bad ctor/)
+    end
+
+    #
+    # B. #call raises ArgumentError → should **not** be wrapped
+    #
+    class CallArgumentError
+      include Callable
+      def call
+        raise ArgumentError, "bad call"
+      end
+    end
+
+    it "propagates ArgumentError raised in #call untouched" do
+      expect { CallArgumentError.call }
+        .to raise_error(ArgumentError, "bad call")
+    end
+  end
 end
