@@ -32,9 +32,32 @@ gem install callable-mixin
 
 ## Usage
 
-Simply include Callable in your class and implement an instance method named `call`:
+### In a Bundler-based app (Rails, Hanami, etc.)
+
+Simply include `Callable` in your class and implement an instance method named `call`:
 
 ```ruby
+class SendNotification
+  include Callable
+
+  def initialize(user, message)
+    @user = user
+    @message = message
+  end
+
+  def call
+    NotificationMailer.notify(@user, @message).deliver_now
+  end
+end
+```
+
+### In a plain Ruby script
+
+Require `'callable'`, include `Callable` in your class and implement an instance method named `call`:
+
+```ruby
+require 'callable'
+
 class SendNotification
   include Callable
 
