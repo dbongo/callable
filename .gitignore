@@ -12,6 +12,7 @@
 /.bundle/
 /vendor/bundle/
 /Gemfile.lock
+.tool-versions
 
 # gems and packages
 *.gem
