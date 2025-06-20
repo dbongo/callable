@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.1](https://github.com/dbongo/callable-mixin/tree/v0.1.1) (2025-06-20)
+
+[Full Changelog](https://github.com/dbongo/callable-mixin/compare/v0.1.0...v0.1.1)
+
 ## [v0.1.0](https://github.com/dbongo/callable-mixin/tree/v0.1.0) (2025-06-20)
 
 [Full Changelog](https://github.com/dbongo/callable-mixin/compare/7065206bbe8bf33e75a3e4bb3e193db42945aec3...v0.1.0)

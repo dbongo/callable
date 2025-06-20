@@ -266,7 +266,7 @@ RSpec.describe Callable do
 
   describe "wrap vs propagate" do
     #
-    # A. #initialize raises ArgumentError → should be **wrapped**
+    # A. #initialize raises ArgumentError - should be wrapped
     #
     class InitArgumentError
       include Callable
@@ -284,7 +284,7 @@ RSpec.describe Callable do
     end
 
     #
-    # B. #call raises ArgumentError → should **not** be wrapped
+    # B. #call raises ArgumentError - should not be wrapped
     #
     class CallArgumentError
       include Callable
@@ -296,6 +296,40 @@ RSpec.describe Callable do
     it "propagates ArgumentError raised in #call untouched" do
       expect { CallArgumentError.call }
         .to raise_error(ArgumentError, "bad call")
+    end
+  end
+
+  # ------------------------------------------------------------------
+  # 6. SUBCLASS vs BASE ArgumentError
+  # ------------------------------------------------------------------
+
+  describe "ArgumentError handling nuances" do
+    class CtorCustomError < ArgumentError; end
+    class InitCustomErrorService
+      include Callable
+      def initialize(*)
+        raise CtorCustomError, "custom ctor err"
+      end
+      def call
+        :never
+      end
+    end
+
+    it "propagates custom ArgumentError subclass from #initialize" do
+      expect { InitCustomErrorService.call }
+        .to raise_error(CtorCustomError, "custom ctor err")
+    end
+
+    class CallCustomErrorService
+      include Callable
+      def call
+        raise CtorCustomError, "custom call err"
+      end
+    end
+
+    it "propagates custom ArgumentError subclass from #call" do
+      expect { CallCustomErrorService.call }
+        .to raise_error(CtorCustomError, "custom call err")
     end
   end
 end

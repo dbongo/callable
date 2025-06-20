@@ -21,6 +21,7 @@ module Callable
         # avoids Ruby 2.3–2.6 quirk
         kwargs.empty? ? new(*args, &block) : new(*args, **kwargs, &block)
       rescue ArgumentError => error
+        raise if error.class != ArgumentError
         raise ConstructionError,
               "Failed to construct #{name}.new with the supplied arguments: #{error.message}",
               error.backtrace
