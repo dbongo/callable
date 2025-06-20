@@ -3,7 +3,7 @@
 require_relative "lib/callable/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "callable"
+  spec.name          = "callable-mixin"
   spec.version       = Callable::VERSION
   spec.authors       = ["Michael Crowther"]
   spec.email         = ["crow404@gmail.com"]
@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Lightweight .call mix-in for service objects"
   spec.description   = "Callable provides Ruby classes with a convenient `.call` method, "\
                        "simplifying instantiation and method invocation."
-  spec.homepage      = "https://github.com/dbongo/callable"
+  spec.homepage      = "https://github.com/dbongo/callable-mixin"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.3.0"
 

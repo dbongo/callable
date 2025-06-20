@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require "bundler/setup"
-require "callable"
+require 'bundler/setup'
+require 'callable-mixin'
 
 RSpec.configure do |config|
   # ------------------------------------------------------------------
   #  Output / filtering niceties
   # ------------------------------------------------------------------
   # Save failing examples and allow `--only-failures`
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.example_status_persistence_file_path = '.rspec_status'
 
   # Allow `fit`, `fdescribe`, `fcontext` to focus on a single example group
   config.filter_run_when_matching :focus

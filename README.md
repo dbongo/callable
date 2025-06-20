@@ -15,7 +15,7 @@ Callable is a minimal Ruby mix-in that provides your classes with a simple `.cal
 Add this to your application's Gemfile:
 
 ```ruby
-gem 'callable'
+gem 'callable-mixin'
 ```
 
 Then execute:
@@ -27,7 +27,7 @@ bundle install
 Or install directly:
 
 ```bash
-gem install callable
+gem install callable-mixin
 ```
 
 ## Usage
@@ -65,7 +65,7 @@ After cloning the repo, install dependencies with `bundle install`, then run tes
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dbongo/callable.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dbongo/callable-mixin.
 
 ## License
 
