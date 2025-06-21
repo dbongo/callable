@@ -123,7 +123,13 @@ After cloning the repo, install dependencies with `bundle install`, then run tes
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dbongo/callable-mixin.
+Please follow these resources before submitting code or issues:
+
+- [Code of Conduct](https://github.com/dbongo/callable-mixin/blob/main/.github/CODE_OF_CONDUCT.md)
+- [Contributing Guide](https://github.com/dbongo/callable-mixin/blob/main/.github/CONTRIBUTING.md)
+- [Pull Request Template](https://github.com/dbongo/callable-mixin/blob/main/.github/PULL_REQUEST_TEMPLATE.md)
+
+Bug reports and pull requests are welcome on GitHub: https://github.com/dbongo/callable-mixin
 
 ## License
 
